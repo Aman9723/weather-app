@@ -14,25 +14,23 @@ const CityCard = ({ city }) => {
             .get(`${API}?q=${city}&appid=${KEY}`)
             .then((res) => {
                 setData(res.data);
-                console.log(
-                    data?.weather[0].main.toLowerCase(),
-                    city
-                );
                 setImage(
                     require(`../assets/${
-                        imagePath[data?.weather[0].main.toLowerCase()]
-                            ? data?.weather[0].main.toLowerCase()
+                        imagePath[res.data.weather[0].main.toLowerCase()]
+                            ? res.data.weather[0].main.toLowerCase()
                             : 'atmosphere'
                     }.jpg`)
                 );
             })
-            .catch((err) => console.log(err));
-    }, []);
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [city]);
 
     return (
         <div className={styles.container}>
             <div className={styles.part1}>
-                <img src={image} alt={city} />
+                <img src={image} alt={data?.weather[0].main} />
                 <p>{data?.weather[0].main}</p>
             </div>
             <div className={styles.part2}>
@@ -40,7 +38,7 @@ const CityCard = ({ city }) => {
                     {kelvinToCelsius(data?.main.temp)} <sup>°</sup>
                 </h1>
                 <span>
-                    <strong>{city}</strong>
+                    <strong>{data?.name}</strong>
                     <p>
                         {date.getMonth() + 1}/{date.getDate()}/
                         {date.getFullYear()}
@@ -51,4 +49,4 @@ const CityCard = ({ city }) => {
     );
 };
 
-export default CityCard;
+export default React.memo(CityCard);

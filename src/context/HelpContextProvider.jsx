@@ -6,6 +6,7 @@ const HelpContextProvider = ({ children }) => {
     const KEY = process.env.REACT_APP_API_KEY;
     const API = process.env.REACT_APP_API_URL;
     const ICON = process.env.REACT_APP_ICON_URL;
+    const FORECAST = process.env.REACT_APP_FORECAST;
 
     const kelvinToCelsius = (k) => {
         return Math.floor(k - 273.15);
@@ -38,6 +39,7 @@ const HelpContextProvider = ({ children }) => {
                 KEY,
                 API,
                 ICON,
+                FORECAST,
                 kelvinToCelsius,
                 imagePath,
                 date,

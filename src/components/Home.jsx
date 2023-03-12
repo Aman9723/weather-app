@@ -24,8 +24,10 @@ const Home = () => {
                         setData(res.data);
                         setImage(
                             require(`../assets/${
-                                imagePath[data?.weather[0].main.toLowerCase()]
-                                    ? data?.weather[0].main.toLowerCase()
+                                imagePath[
+                                    res.data.weather[0].main.toLowerCase()
+                                ]
+                                    ? res.data.weather[0].main.toLowerCase()
                                     : 'atmosphere'
                             }.jpg`)
                         );
@@ -33,17 +35,16 @@ const Home = () => {
                     .catch((err) => console.log(err));
             },
             (err) => {
-                alert(
-                    'Please give permission to access location for current weather information'
-                );
                 axios
                     .get(`${API}?q=Mumbai&appid=${KEY}`)
                     .then((res) => {
                         setData(res.data);
                         setImage(
                             require(`../assets/${
-                                imagePath[data?.weather[0].main.toLowerCase()]
-                                    ? data?.weather[0].main.toLowerCase()
+                                imagePath[
+                                    res.data.weather[0].main.toLowerCase()
+                                ]
+                                    ? res.data.weather[0].main.toLowerCase()
                                     : 'atmosphere'
                             }.jpg`)
                         );

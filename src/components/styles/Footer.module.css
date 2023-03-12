@@ -29,6 +29,7 @@
 
 .container li {
     cursor: pointer;
+    word-break: keep-all;
 }
 
 @media all and (min-width: 0px) and (max-width: 680px) {
